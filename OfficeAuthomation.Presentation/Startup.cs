@@ -95,9 +95,20 @@ namespace OfficeAuthomation.Presentation
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "AdminPanel",
+                    areaName: "AdminPanel",
+                    pattern: "AdminPanel/{controller=Dashboard}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "UserPanel",
+                    areaName: "UserPanel",
+                    pattern: "UserPanel/{controller=Home}/{action=Index}/{id?}");
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }

@@ -10,6 +10,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +18,17 @@
     <ProjectReference Include="..\OfficeAuthomation.DataAccessQueries\OfficeAuthomation.DataAccessQueries.csproj" />
     <ProjectReference Include="..\OfficeAuthomation.Domains\OfficeAuthomation.Domains.csproj" />
     <ProjectReference Include="..\OfficeAuthomation.Servicess\OfficeAuthomation.Servicess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\AdminPanel\Data\" />
+    <Folder Include="Areas\AdminPanel\Models\" />
+    <Folder Include="Areas\AdminPanel\Views\Dashboard\" />
+    <Folder Include="Areas\UserPanel\Data\" />
+    <Folder Include="Areas\UserPanel\Models\" />
+    <Folder Include="Areas\UserPanel\Views\Home\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="wwwroot\Vuexy\" />
   </ItemGroup>
 
 </Project>
