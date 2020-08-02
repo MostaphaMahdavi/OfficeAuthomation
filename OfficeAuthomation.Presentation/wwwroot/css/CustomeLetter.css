@@ -1,0 +1,31 @@
+﻿.selectedLetter {
+    background-color: tomato;
+    cursor: pointer;
+    border: 1px dotted purple;
+    color: whitesmoke;
+
+}
+
+
+.tblList {
+    height: 250px;
+    overflow: auto;
+}
+
+
+#listLetter {
+    height: 350px;
+    overflow: auto;
+}
+
+.listStatus {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.selectedLetter2 {
+    background-color: gray;
+    cursor: pointer;
+    border: 1px dotted purple;
+    color: whitesmoke;
+}

@@ -1,0 +1,39 @@
+﻿
+.LabelClass {
+     font-weight: bold;
+ }
+
+.cke_button__defaultform_icon {
+    display: none !important; /*without icon*/
+}
+
+.cke_button__automationform_icon {
+    display: none !important; /*without icon*/
+}
+
+.cke_button__automationform_label {
+    display: inline !important; /*show the text label*/
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 2px;
+    width: 100px;
+    height: 23px;
+    font-size: 12px;
+    text-align: center;
+    background-color: #e4dddd;
+    margin-right: 10px;
+}
+
+.cke_button__defaultform_label {
+    display: inline !important; /*show the text label*/
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 2px;
+    width: 100px;
+    height: 23px;
+    font-size: 12px;
+    text-align: center;
+    background-color: #e4dddd;
+}
+
+

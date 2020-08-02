@@ -10,11 +10,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using OfficeAuthomation.DataAccessCommands.Context;
 using OfficeAuthomation.Domains.Accounts.Roles.Entities;
 using OfficeAuthomation.Domains.Accounts.Users.Entities;
 using OfficeAuthomation.Presentation.Utilities.Extentions.IOCs;
 using OfficeAuthomation.Presentation.Utilities.Extentions.Validations;
+using Serilog;
 
 namespace OfficeAuthomation.Presentation
 {
@@ -24,7 +26,14 @@ namespace OfficeAuthomation.Presentation
         {
             Configuration = configuration;
 
+            #region SeriLog
 
+            Log.Logger = new LoggerConfiguration()
+
+                .ReadFrom.Configuration(Configuration)
+                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+                .CreateLogger();
+            #endregion
 
 
         }
@@ -68,13 +77,13 @@ namespace OfficeAuthomation.Presentation
 
             services.AddAuthentication();
             services.AddMvc().AddRazorRuntimeCompilation();
-
+            services.AddKendo();
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -87,10 +96,18 @@ namespace OfficeAuthomation.Presentation
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseStatusCodePages();
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            #region SeriLog
+
+            loggerFactory.AddSerilog();
+
+            #endregion
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
