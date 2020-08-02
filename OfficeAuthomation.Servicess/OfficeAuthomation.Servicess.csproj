@@ -4,4 +4,17 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OfficeAuthomation.Domains\OfficeAuthomation.Domains.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Accounts\Roles\Commands\" />
+    <Folder Include="Accounts\Roles\Queries\" />
+    <Folder Include="Accounts\Roles\Validations\" />
+    <Folder Include="Accounts\Users\Commands\" />
+    <Folder Include="Accounts\Users\Queries\" />
+    <Folder Include="Accounts\Users\Validations\" />
+  </ItemGroup>
+
 </Project>

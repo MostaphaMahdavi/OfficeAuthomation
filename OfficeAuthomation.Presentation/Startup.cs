@@ -5,9 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OfficeAuthomation.DataAccessCommands.Context;
+using OfficeAuthomation.Domains.Accounts.Roles.Entities;
+using OfficeAuthomation.Domains.Accounts.Users.Entities;
+using OfficeAuthomation.Presentation.Utilities.Extentions.IOCs;
+using OfficeAuthomation.Presentation.Utilities.Extentions.Validations;
 
 namespace OfficeAuthomation.Presentation
 {
@@ -16,6 +23,10 @@ namespace OfficeAuthomation.Presentation
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+
+
+
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +35,42 @@ namespace OfficeAuthomation.Presentation
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            #region Context
+
+            services.AddDbContext<OfficeAuthomationContext>(option =>
+                 { option.UseSqlServer(Configuration["ConnectionStrings:CommandConnection"]); });
+           
+            #endregion
+
+            #region Identity
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<OfficeAuthomationContext>()
+                .AddDefaultTokenProviders();
+
+
+            #endregion
+
+            #region IOC
+
+            services.AddIoc();
+
+            #endregion
+
+
+            #region Validation
+
+            services.AddValidation();
+
+            #endregion
+
+            services.AddAuthentication();
+            services.AddMvc().AddRazorRuntimeCompilation();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

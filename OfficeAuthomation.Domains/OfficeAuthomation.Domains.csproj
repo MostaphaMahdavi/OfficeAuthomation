@@ -4,4 +4,15 @@
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Accounts\Roles\Commands\" />
+    <Folder Include="Accounts\Roles\Queries\" />
+    <Folder Include="Accounts\Users\Commands\" />
+    <Folder Include="Accounts\Users\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
+  </ItemGroup>
+
 </Project>
