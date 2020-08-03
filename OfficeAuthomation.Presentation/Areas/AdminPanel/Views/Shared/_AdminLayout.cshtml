@@ -8,6 +8,8 @@
 
     <title>پنل ادمین -@ViewData["Title"]</title>
     <partial name="PartialComponent/_style" />
+    <partial name="PartialComponent/_kendoStyleAndScripts" />
+    <link href="~/css/customeAdmin.css" rel="stylesheet" />
     @RenderSection("Styles", false)
 
 </head>
@@ -19,7 +21,7 @@
     <partial name="PartialComponent/_header" />
     <!-- END: Header-->
     <!-- BEGIN: Main Menu-->
-    <partial name="PartialComponent/_mainMenu" />
+    <partial name="AdminPartialComponent/_adminMenu" />
     <!-- END: Main Menu-->
     <!-- BEGIN: Content-->
     <div class="app-content content">

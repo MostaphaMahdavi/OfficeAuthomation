@@ -8,6 +8,7 @@
 
     <title>پنل کاربر -@ViewData["Title"]</title>
     <partial name="PartialComponent/_style" />
+    <partial name="PartialComponent/_kendoStyleAndScripts" />
     @RenderSection("Styles", false)
 
 </head>
@@ -19,7 +20,7 @@
 <partial name="PartialComponent/_header" />
 <!-- END: Header-->
 <!-- BEGIN: Main Menu-->
-<partial name="PartialComponent/_mainMenu" />
+<partial name="UserPartialComponent/_userMenu" />
 <!-- END: Main Menu-->
 <!-- BEGIN: Content-->
 <div class="app-content content">

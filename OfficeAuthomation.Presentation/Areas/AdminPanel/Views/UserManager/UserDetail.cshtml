@@ -1,0 +1,267 @@
+﻿@model User
+@{
+    var fullName = Model.FirstName + ' ' + Model.LastName;
+    ViewData["Title"] = fullName;
+}
+
+<div class="content-body">
+    <!-- page users view start -->
+    <section class="page-users-view">
+        <div class="row">
+            <!-- account start -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">حساب</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="users-view-image">
+                                @if (Model.ImagePath != null)
+                                {
+                                    <img id="imgInInfo" src="/Images/UserAvatar/@Model.ImagePath" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                }
+                                else
+                                {
+                                    <img id="imgInInfo" src="/Images/UserAvatar/noPhoto.png" class="users-avatar-shadow w-100 rounded mb-2 pr-2 ml-1" alt="avatar">
+                                }
+                            </div>
+                            <div class="col-12 col-sm-9 col-md-6 col-lg-5">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">نام کاربری</td>
+                                            <td>@Model.UserName</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">نام</td>
+                                            <td>@Model.FirstName @Model.LastName</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">ایمیل</td>
+                                            <td>@Model.Email</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-5">
+                                <table class="ml-0 ml-sm-0 ml-lg-0">
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">وضعیت</td>
+                                            <td>
+                                                @if (Model.IsActive)
+                                                {
+                                                    <span class="text-success">فعال</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger">غیرفعال</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                        @*<tr>
+                                                <td class="font-weight-bold">نقش</td>
+                                                <td>مدیر</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">شرکت</td>
+                                                <td>WinDon Technologies Pvt Ltd</td>
+                                            </tr>*@
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-12">
+                                <a asp-action="EditUser" asp-route-userId="@Model.Id" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i>  ویرایش </a>
+                                <a asp-action="Index" class="btn btn-outline-warning waves-effect waves-light"><i class="feather icon-arrow-right"></i> بازگشت</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- account end -->
+            <!-- information start -->
+            <div class="col-md-6 col-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title mb-2">اطلاعات</div>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="font-weight-bold">تاریخ تولد</td>
+                                    <td> @Model.ShamsiBirthDate</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">تلفن همراه</td>
+                                    <td>@Model.PhoneNumber</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="font-weight-bold">جنسیت</td>
+                                    <td>
+                                        @if (@Model.Gender)
+                                        {
+                                            <span> مرد</span>
+                                        }
+                                        else
+                                        {
+                                            <span>زن</span>
+                                        }
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- information start -->
+            <!-- social links end -->
+            <div class="col-md-6 col-12 ">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title mb-2">اطلاعات </div>
+                    </div>
+                    <div class="card-body">
+                        @*<table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="font-weight-bold">توییتر</td>
+                                            <td> https://twitter.com/adoptionism744</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">فیس بوک</td>
+                                            <td> https://www.facebook.com/nparoco.co</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">اینستاگرام</td>
+                                            <td> https://www.instagram.com/nparoco.co</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">گیت هاب</td>
+                                            <td> https://github.com/madop818</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">کدپن</td>
+                                            <td> https://codepen.io/adoptism243</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="font-weight-bold">اسلک</td>
+                                            <td>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>*@
+                    </div>
+                </div>
+            </div>
+            <!-- social links end -->
+            <!-- permissions start -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header border-bottom mx-2 px-0">
+                        <h6 class="border-bottom py-1 mb-0 font-medium-2"><i class="feather icon-lock mr-50 "></i> اجازه</h6>
+                    </div>
+                    <div class="card-body px-75">
+                        <div class="table-responsive users-view-permission">
+                            @*<table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>ماژول</th>
+                                            <th>خواندن</th>
+                                            <th>نوشتن</th>
+                                            <th>ایجاد کردن</th>
+                                            <th>حذف</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>کاربران</td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox1" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox1"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox2" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox2"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox3" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox3"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox4" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox4"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>مقالات</td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox5" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox5"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox6" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox6"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox7" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox7"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox8" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox8"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>پرسنل</td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox9" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox9"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox10" class="custom-control-input" disabled="" checked="">
+                                                    <label class="custom-control-label" for="users-checkbox10"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox11" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox11"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-checkbox ml-50">
+                                                    <input type="checkbox" id="users-checkbox12" class="custom-control-input" disabled=""><label class="custom-control-label" for="users-checkbox12"></label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- permissions end -->
+        </div>
+    </section>
+    <!-- page users view end -->
+
+</div>

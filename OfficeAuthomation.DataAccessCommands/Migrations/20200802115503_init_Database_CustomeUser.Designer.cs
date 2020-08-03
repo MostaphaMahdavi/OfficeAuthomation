@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OfficeAuthomation.DataAccessCommands.Context;
 
 namespace OfficeAuthomation.DataAccessCommands.Migrations
 {
     [DbContext(typeof(OfficeAuthomationContext))]
-    partial class OfficeAuthomationContextModelSnapshot : ModelSnapshot
+    [Migration("20200802115503_init_Database_CustomeUser")]
+    partial class init_Database_CustomeUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

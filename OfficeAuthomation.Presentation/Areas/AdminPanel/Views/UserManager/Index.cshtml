@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>لیست کاربران سامانه</h1>
+
+<section>
+
+
+
+
+    <div class="row">
+        <div class="k-rtl">
+            <div id="grid"></div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+@section Scripts
+{
+    <script>
+        $(document).ready(() => {
+            LoadGrid();
+        });
+
+    </script>
+
+    <script>
+
+        function LoadGrid() {
+
+            $("#grid").kendoGrid({
+                dataSource: {
+                    transport: {
+                        read: {
+                            url: "/AdminPanel/UserManager/GetAllUser",
+                            type: 'POST',
+                            //beforeSend: function (req) {
+                            //    req.setRequestHeader('Authorization', token);
+                            //}
+
+                        }
+                    },
+                    schema: {
+                        data: "data",
+                        total: "total"
+                    },
+                    pageSize: 7,
+                    serverPaging: false,
+                    serverOperation: false,
+                    serverFiltering: false
+                },
+                pageable: true,
+                scrollable: true,
+                sortable: true,
+                groupable: true,
+                //   detailInit: detail,
+
+
+                dataBound: function(e) {
+
+                    console.log(e.sender._data);
+
+                    //var grid = this;
+
+                    //grid.tbody.find(".done").each(function (e) {
+
+                    //    var row = $(this).closest("tr");
+
+                    //    var model = grid.dataItem(row);
+
+                    //    $(this).kendoProgressBar({
+                    //        max: model.total,
+                    //        value: model.done
+                    //    });
+
+                    //    $(this).find(".k-state-selected").each(function () {
+                    //        $(this).css({
+                    //            "background-color": "rgb(25, 224, 109)", "border-color": "rgb(25, 224, 109)"
+                    //        });
+                    //    });
+
+                    //});
+
+                    //grid.tbody.find(".remain").each(function (e) {
+
+                    //    var row = $(this).closest("tr");
+
+                    //    var model = grid.dataItem(row);
+
+                    //    $(this).kendoProgressBar({
+                    //        max: model.total,
+                    //        value: (model.total - model.done)
+                    //    });
+
+                    //    $(this).find(".k-state-selected").each(function () {
+                    //        $(this).css({
+                    //            "background-color": "rgb(255, 189, 0)", "border-color": "rgb(255, 189, 0)"
+                    //        });
+                    //    });
+
+                    //});
+
+
+                },
+                columns: [
+                    {
+                        field: "id",
+                        title: "کد کاربری",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "userName",
+                        title: "نام کاربری",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "firstName",
+                        title: "نام",
+                        width: "150px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "lastName",
+                        title: "نام خانوادگی",
+                        width: "150px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "personalCode",
+                        title: "کد پرسنلی ",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "meliCode",
+                        title: "کدملی",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "imagePath",
+                        title: "تصویر کاربر",
+                        width: "100px",
+                        template: "<img src='/Images/UserAvatar/#= imagePath #' style='width:50px;height:50px' />",
+
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "signaturePath",
+                        title: "امضا کاربر",
+                        width: "100px",
+                        template: "<img src='/Images/Signature/#= signaturePath #' style='width:50px;height:50px' />",
+
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        field: "done",
+                        title: "انجام شده",
+                        template: "<div class='done' style='height:20px;font-size:12px;width:95%;'></div>",
+                        width: "100px",
+                        attributes: {
+                            style: "text-align:center;"
+                        }
+                    },
+                    {
+                        command: [
+                            { text: "نمایش", click: editUser },
+                            { text: "ویرایش", click: editUser },
+                            { text: "حذف", click: editUser }
+                        ],
+                        attributes: { style: "text-align:center;" },
+                        title: "عملیات",
+                        media: "(min-width: 400px)"
+                    },
+
+                    //{
+                    //    field: "remain",
+                    //    title: "مانده",
+                    //    template: "<div class='remain' style='height:20px;font-size:12px;width:95%;'></div>",
+                    //    width: "100px",
+                    //    attributes: {
+                    //        style: "text-align:center;"
+                    //    }
+                    //}
+                ],
+                toolbar: [
+                    {
+                        template:
+                            '<div class="k-button k-button-icontext" onClick="downloadExcel()"><span class="k-icon k-i-file-excel"></span>دانلود اکسل</div>'
+                    }
+                ]
+            });
+        }
+
+
+        function editUser(e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            var a = document.createElement("a");
+            a.href = "/AdminPanel/UserManager/UserDetail?userId=" + dataItem.id;
+            a.target = "_blank";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+        }
+
+
+    </script>
+
+
+
+}

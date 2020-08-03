@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OfficeAuthomation.Presentation.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     public class DashboardController : Controller
     {
         public IActionResult Index()

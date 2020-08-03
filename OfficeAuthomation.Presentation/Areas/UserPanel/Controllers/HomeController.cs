@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OfficeAuthomation.Presentation.Areas.UserPanel.Controllers
 {
+    [Area("UserPanel")]
     public class HomeController : Controller
     {
         public IActionResult Index()
