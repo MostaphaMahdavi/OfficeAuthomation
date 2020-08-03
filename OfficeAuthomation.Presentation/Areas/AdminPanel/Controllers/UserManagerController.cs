@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OfficeAuthomation.Domains.Accounts.Users.Repositories;
+using System.Threading.Tasks;
 
 namespace OfficeAuthomation.Presentation.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
     public class UserManagerController : Controller
     {
-        private IUserRepositoryQuery _userRepositoryQuery;
+        private readonly IUserRepositoryQuery _userRepositoryQuery;
 
         public UserManagerController(IUserRepositoryQuery userRepositoryQuery)
         {
             _userRepositoryQuery = userRepositoryQuery;
         }
 
-
-
+         
         public IActionResult Index()
         {
             return View();
         }
-
-
+         
 
 
         [HttpPost]
@@ -33,11 +28,11 @@ namespace OfficeAuthomation.Presentation.Areas.AdminPanel.Controllers
             var data = await _userRepositoryQuery.GetAllUser();
             var total = data.Count;
 
-         
+
 
             return Json(new
             {
-                data=data,
+                data = data,
                 total = total
 
             });
@@ -49,11 +44,11 @@ namespace OfficeAuthomation.Presentation.Areas.AdminPanel.Controllers
 
             var user = await _userRepositoryQuery.GetUserById(userId);
 
-            if (user==null)
+            if (user == null)
             {
                 return NotFound();
             }
-           
+
             return View(user);
         }
     }
