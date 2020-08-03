@@ -1,6 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using OfficeAuthomation.DataAccessQueries.Accounts.Users.Repositories;
+﻿using System.Linq;
+using OfficeAuthomation.Domains.Accounts.Users.Repositories;
+using System.Threading.Tasks;
+using Dapper;
+using Microsoft.Data.SqlClient;
+using OfficeAuthomation.Domains.Accounts.Users.Entities;
 using Xunit;
 
 namespace OfficeAuthomation.TestDataAccessQueries
@@ -9,25 +12,38 @@ namespace OfficeAuthomation.TestDataAccessQueries
 
     public class TestUserRepositoryQuery
     {
-        private readonly SqlConnection _db;
-        private readonly IConfiguration _configuration;
-        public TestUserRepositoryQuery(IConfiguration configuration)
+        private SqlConnection _context;
+
+        public TestUserRepositoryQuery()
         {
-            _db = new SqlConnection(configuration["ConnectionStrings:QueryConnection"]);
+            _context = new SqlConnection("Server=.;Database=OfficeAuthomation;Uid=sa;Pwd=123;MultipleActiveResultSets=true");
+        }
+
+
+        [Fact]
+
+        public async Task Should_GetAllUser()
+        {
+
+            var result = (await _context.QueryAsync<User>("select * from users")).ToList();
+
+
+            Assert.NotEmpty(result);
 
         }
 
 
         [Fact]
-        public void Should_GetAllUser()
+        public async Task should_GetUserById_when_4b58b3db6b8f42ada007fdd77daba989_then_Mostapha()
         {
-            UserRepositoryQuery user = new UserRepositoryQuery(_configuration);
+            var userId = "4b58b3db-6b8f-42ad-a007-fdd77daba989";
+            var result =
+              await _context.QueryFirstOrDefaultAsync<User>("select * from users where id=@userId", new { @userId = userId });
 
-            var result = user.GetAllUser();
+            Assert.Equal(result.UserName, "Mostapha");
 
-            Assert.NotEmpty(result.Result);
+
         }
-
 
     }
 }
