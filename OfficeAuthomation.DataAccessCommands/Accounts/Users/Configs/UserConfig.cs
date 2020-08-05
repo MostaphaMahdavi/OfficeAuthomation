@@ -15,6 +15,7 @@ namespace OfficeAuthomation.DataAccessCommands.Accounts.Users.Configs
             builder.Property(u => u.Address).IsRequired().HasMaxLength(1000);
             builder.Property(u => u.ShamsiBirthDate).IsRequired().HasMaxLength(10);
             builder.Property(u => u.Gender).IsRequired();
+            builder.Property(u => u.RoleAdmin).IsRequired();
             builder.Property(u => u.MeliCode).IsRequired().HasMaxLength(10);
             builder.Property(u => u.PersonalCode).IsRequired().HasMaxLength(10);
             builder.Property(u => u.ImagePath).IsRequired();

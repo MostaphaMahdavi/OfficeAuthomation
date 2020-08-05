@@ -17,7 +17,8 @@ namespace OfficeAuthomation.Domains.Accounts.Users.Entities
 
         public DateTime BirthDate { get; set; }
         public string ShamsiBirthDate { get; set; }
-        public bool Gender { get; set; }
+        public byte Gender { get; set; }
+        public byte RoleAdmin { get; set; }
         public bool IsActive { get; set; }
 
         public string MeliCode { get; set; }

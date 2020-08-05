@@ -29,5 +29,7 @@ namespace OfficeAuthomation.DataAccessQueries.Accounts.Users.Repositories
         {
             return await _context.QueryFirstOrDefaultAsync<User>("select * from users where id=@userId",new{ @userId = userId});
         }
+
+
     }
 }

@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using OfficeAuthomation.Domains.Accounts.Users.Repositories;
-using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using OfficeAuthomation.Domains.Accounts.Users.Entities;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace OfficeAuthomation.TestDataAccessQueries
@@ -12,11 +11,12 @@ namespace OfficeAuthomation.TestDataAccessQueries
 
     public class TestUserRepositoryQuery
     {
-        private SqlConnection _context;
+        private readonly SqlConnection _context;
 
         public TestUserRepositoryQuery()
         {
             _context = new SqlConnection("Server=.;Database=OfficeAuthomation;Uid=sa;Pwd=123;MultipleActiveResultSets=true");
+
         }
 
 
@@ -26,7 +26,6 @@ namespace OfficeAuthomation.TestDataAccessQueries
         {
 
             var result = (await _context.QueryAsync<User>("select * from users")).ToList();
-
 
             Assert.NotEmpty(result);
 
@@ -44,6 +43,17 @@ namespace OfficeAuthomation.TestDataAccessQueries
 
 
         }
+
+        [Fact]
+        public async Task should_GetUserById_when_1234_then_Null()
+        {
+            var userId = "1234";
+            var result=
+                await _context.QueryFirstOrDefaultAsync<User>("select * from users where id=@userId", new { @userId = userId });
+
+            Assert.Null(result);
+        }
+
 
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -62,13 +64,25 @@ namespace OfficeAuthomation.Presentation
 
             #endregion
 
+            #region Mapper
+
+            services.AddAutoMapper(typeof(Startup));
+
+            #endregion
+
+            #region MediatR
+
+            var assembly = AppDomain.CurrentDomain.Load("OfficeAuthomation.Servicess");
+            services.AddMediatR(assembly);
+
+
+            #endregion
             #region IOC
 
             services.AddIoc();
 
             #endregion
-
-
+            
             #region Validation
 
             services.AddValidation();

@@ -16,6 +16,9 @@ namespace OfficeAuthomation.Presentation.Utilities.Extentions.IOCs
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
+
+
             services.AddScoped<IUserRepositoryCommand, UserRepositoryCommand>();
             services.AddScoped<IUserRepositoryQuery, UserRepositoryQuery>();
 

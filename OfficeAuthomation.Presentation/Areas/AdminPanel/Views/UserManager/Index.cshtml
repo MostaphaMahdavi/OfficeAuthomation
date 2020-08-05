@@ -7,7 +7,7 @@
 
 <section>
 
-
+     
 
 
     <div class="row">
@@ -18,6 +18,30 @@
 
 
 </section>
+
+
+
+
+
+<div class="modal-success mr-1 mb-1 d-inline-block">
+  
+    <!-- Modal -->
+    <div class="modal fade text-left" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel110" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="myModal"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -58,7 +82,31 @@
                 pageable: true,
                 scrollable: true,
                 sortable: true,
-                groupable: true,
+                groupable: {
+                    messages: {
+                        empty: "برای گروه بندی بر اساس ستون روی عنوان ستون مربوطه کلیک کرده و به اینجا بکشید"
+                    }
+                },
+
+                // filterable:true,
+                filterable: {
+                    mode: "menu",
+                    extra: true,
+                    operators: {
+                        "string": {
+                            "contains": "شامل شود به",
+                            "equal": "برابر با"
+
+                        } 
+                    },
+                    messages: {
+                        info: "فیلتر بر اساس ... ",
+                        and: "و",
+                        or: "یا",
+                        filter: "فیلتر",
+                        clear: "کنسل"
+                    }
+                },
                 //   detailInit: detail,
 
 
@@ -129,7 +177,7 @@
                     {
                         field: "lastName",
                         title: "نام خانوادگی",
-                        width: "100px",
+                        width: "115px",
                         attributes: {
                             style: "text-align:center;"
                         }
@@ -137,7 +185,7 @@
                     {
                         field: "personalCode",
                         title: "کد پرسنلی ",
-                        width: "100px",
+                        width: "110px",
                         attributes: {
                             style: "text-align:center;"
                         }
@@ -153,7 +201,7 @@
                     {
                         field: "imagePath",
                         title: "تصویر کاربر",
-                        width: "80px",
+                        width: "105px",
                         template: "<img src='/Images/UserAvatar/#= imagePath #' style='width:50px;height:50px' />",
 
                         attributes: {
@@ -163,8 +211,8 @@
                     {
                         field: "signaturePath",
                         title: "امضا کاربر",
-                        width: "80px",
-                        template: "<img src='/Images/Signature/#= signaturePath #' style='width:50px;height:50px' />",
+                        width: "100px",
+                        template: "<img src='/Images/Signature/#= signaturePath #' style='width:30px;height:30px' />",
 
                         attributes: {
                             style: "text-align:center;"
@@ -172,19 +220,35 @@
                     }, {
                         field: "gender",
                         title: "جنسیت ",
-                        width: "70px",
+                        width: "90px",
                         attributes: {
                             style: "text-align:center;"
                         },
-                        template:'#:statusGender(gender)#'
+                        
+                        // template: '#:statusGender(gender)#',
+                        template: function(item) {
+                            if (item.gender === 1) {
+                                return "<i class='fa fa-male text-info bolder'></i>";
+                            } else {
+                                return "<i class='fa fa-female text-warning bolder'></i>";
+                            }
+                        }
                     }, {
                         field: "isActive",
                         title: "وضعیت ",
-                        width: "70px",
+                        width: "90px",
                         attributes: {
                             style: "text-align:center;"
                         },
-                        template: '#:statusisActive(isActive)#'
+                        // template: '#:statusisActive(isActive)#'
+                        template: function (item) {
+                          
+                            if (item.isActive === true) {
+                                return "<i class='fa fa-check'  style='color:#28a745;'></i>";
+                            } else {
+                                return "<i class='fa fa-times'  style='color:#dc3545;'></i>";
+                            }
+                        }
                     },
                     {
                         field: "done",
@@ -197,9 +261,9 @@
                     },
                     {
                         command: [
-                            { text: "نمایش", click: editUser },
-                            { text: "ویرایش", click: editUser},
-                            { text: "حذف", click: editUser }
+                            {text: " نمایش ", click: userDetail, iconClass: "fa fa-eye"},
+                            { text: " ویرایش ", click: editUser, iconClass: "fa fa-edit"},
+                            { text: " حذف ", click: ShowModal, iconClass: "fa fa-remove" }
                         ],
                         attributes: { style: "text-align:center;" },
                         title: "عملیات",
@@ -219,7 +283,11 @@
                 toolbar: [
                     {
                         template:
-                            '<div class="k-button k-button-icontext" onClick="downloadExcel()"><span class="k-icon k-i-file-excel"></span>دانلود اکسل</div>'
+                            '<a class="btn btn-success k-button k-button-plus"  href="/AdminPanel/UserManager/AddUser"><span class="k-icon k-i-plus"></span>افزودن کاربر جدید </a>'
+                    },
+                    {
+                        template:
+                            '<div style="float:left" class="btn-warning k-button k-button-icontext" onClick="downloadExcel()"><span class="k-icon k-i-file-excel"></span>دانلود اکسل</div>'
                     }
                 ]
             });
@@ -227,13 +295,25 @@
 
 
         function editUser(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+            var a = document.createElement("a");
+            a.href = "/AdminPanel/UserManager/EditUser?userId=" + dataItem.id;
+            a.target = "_blank";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        
+        function userDetail(e) {
 
             e.preventDefault();
             e.stopPropagation();
             var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
             var a = document.createElement("a");
             a.href = "/AdminPanel/UserManager/UserDetail?userId=" + dataItem.id;
-            a.target = "_blank";
+         //   a.target = "_blank";
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -247,7 +327,7 @@
             //    return "<div class='fonticon-wrap'><i class='fa fa-female'></i></div>";
                 return "مرد";
             else
-               // return "<div class='fonticon-wrap'><i class='fa fa-male'></i></div>";
+            // return "<div class='fonticon-wrap'><i class='fa fa-male'></i></div>";
                 return "زن";
         }
 
@@ -260,8 +340,30 @@
             }
         }
 
-    </script>
 
+    </script>
+    
+    <script>
+        function ShowModal(e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+ 
+
+
+            $.ajax({
+                type: "get",
+                url: "/AdminPanel/UserManager/ActiveOrDeActiveUser",
+                data: { userId: dataItem.id}
+            }).done(function(res) {
+                $("#modal").modal('show');
+                $(".myModal").html(res);
+            });
+
+
+        }
+    </script>
 
 
 }

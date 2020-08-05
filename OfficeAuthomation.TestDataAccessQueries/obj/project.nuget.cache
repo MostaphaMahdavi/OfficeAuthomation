@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "wPleHnNqN5LMKOH6CZ7Evt88b5aTd1sZ68gcnMWdvXIKNGLkLwN2m+b8LYNcFGs2J0+a65+dlulx/tDgVtjo0g==",
+  "dgSpecHash": "XXBw6Zt4gnRFgkDyrA6DiCcuBzB3FiALXzqcI4XjM59Jx2hGglFBfRx32SKSVJzwqT9ghmbvKyK6L7kzuQk++Q==",
   "success": true,
   "projectFilePath": "C:\\MainProject\\OfficeAuthomation\\OfficeAuthomation\\OfficeAuthomation.TestDataAccessQueries\\OfficeAuthomation.TestDataAccessQueries.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mostapha\\.nuget\\packages\\coverlet.collector\\1.2.0\\coverlet.collector.1.2.0.nupkg.sha512",
     "C:\\Users\\mostapha\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
+    "C:\\Users\\mostapha\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
     "C:\\Users\\mostapha\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.6\\microsoft.aspnetcore.cryptography.internal.3.1.6.nupkg.sha512",
     "C:\\Users\\mostapha\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.6\\microsoft.aspnetcore.cryptography.keyderivation.3.1.6.nupkg.sha512",
     "C:\\Users\\mostapha\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.6\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.6.nupkg.sha512",

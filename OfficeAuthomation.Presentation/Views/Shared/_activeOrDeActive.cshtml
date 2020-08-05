@@ -1,0 +1,37 @@
+﻿<div class="modal-header bg-@ViewBag.bgState white">
+    <h5 class="modal-title" id="myModalLabel110">
+        @if (ViewBag.status == true)
+        {
+            <span>غیر فعالسازی کاربر</span>
+        }
+        else
+        {
+            <span> فعالسازی کاربر</span>
+        }
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    @if (ViewBag.status == true)
+    {
+        <span class="text-primary"> آیا نسبت به غیرفعالسازی کاربر " @ViewBag.fullName " اطمینان دارید؟</span>
+    }
+    else
+    {
+        <span class="text-primary"> آیا نسبت به فعالسازی کاربر " @ViewBag.fullName " اطمینان دارید؟</span>
+    }
+</div>
+<div class="modal-footer">
+
+    <form asp-action="ActiveOrDeActive" method="post">
+        <input type="hidden" name="userId" value="@ViewBag.userId"/>
+       
+       
+
+        <button type="submit" class="btn btn-@ViewBag.bgState waves-effect waves-light" >تایید </button>
+    </form>
+
+</div>

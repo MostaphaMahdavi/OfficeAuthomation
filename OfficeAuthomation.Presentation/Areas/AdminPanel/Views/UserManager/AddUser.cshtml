@@ -1,0 +1,288 @@
+﻿@using Kendo.Mvc.UI
+@model UserViewModel
+@{
+    ViewData["Title"] = "افزودن کاربر جدید";
+}
+
+<section class="input-validation">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">افزودن کاربر جدید</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <form class="form-horizontal" asp-action="AddUser" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="FirstName"></span>
+                                        <div class="controls">
+                                            <input type="text" asp-for="FirstName" class="form-control" placeholder="نام">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="LastName"></span>
+                                        <div class="controls">
+                                            <input type="text" asp-for="LastName" class="form-control" placeholder="تام خانوادگی">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="UserName"></span>
+                                        <div class="controls">
+                                            <input type="text" asp-for="UserName" class="form-control" placeholder="نام کاربری">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="PhoneNumber"></span>
+                                        <div class="controls">
+                                            <input type="tel" asp-for="PhoneNumber" class="form-control" placeholder="موبایل ">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="MeliCode"></span>
+                                        <div class="controls">
+                                            <input type="text" asp-for="MeliCode" class="form-control" placeholder="کد ملی">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="PersonalCode"></span>
+                                        <div class="controls">
+                                            <input type="text" asp-for="PersonalCode" class="form-control" placeholder="کد پرسنلی">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="Email"></span>
+                                        <div class="controls">
+                                            <input type="email" asp-for="Email" class="form-control" placeholder="ایمیل ">
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group validate">
+                                            <span asp-validation-for="BirthDate"></span>
+                                            <div class="controls">
+                                                <input type="date" asp-for="BirthDate" class="form-control" placeholder="تاریخ تولد">
+                                                <div class="help-block"></div>
+                                            </div>
+
+                                        </div>*@
+
+
+                                    <div class="form-group validate" style="margin-bottom: 25px">
+
+
+
+                                        <div class="k-rtl">
+                                            @(Html.Kendo().DatePicker()
+                                                .Name("PersianBirthDatePicker")
+                                                .Format("yyyy/MM/dd")
+                                                //  .Value("1397/01/05")
+                                                )
+                                        </div>
+
+
+
+                                    </div>
+
+
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="Gender"></span>
+
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="vs-radio-con">
+                                                        <input type="radio" name="gender" checked="" value="1">
+                                                        <span class="vs-radio">
+                                                            <span class="vs-radio--border"></span>
+                                                            <span class="vs-radio--circle"></span>
+                                                        </span>
+                                                        <span class="">مرد</span>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="vs-radio-con vs-radio-success">
+                                                        <input type="radio" name="gender" value="2">
+                                                        <span class="vs-radio">
+                                                            <span class="vs-radio--border"></span>
+                                                            <span class="vs-radio--circle"></span>
+                                                        </span>
+                                                        <span class="">زن</span>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="RoleAdmin"></span>
+
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="vs-radio-con">
+                                                        <input type="radio" name="roleAdmin" checked="" value="1">
+                                                        <span class="vs-radio">
+                                                            <span class="vs-radio--border"></span>
+                                                            <span class="vs-radio--circle"></span>
+                                                        </span>
+                                                        <span class="">ادمین</span>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="vs-radio-con vs-radio-success">
+                                                        <input type="radio" name="roleAdmin" value="2">
+                                                        <span class="vs-radio">
+                                                            <span class="vs-radio--border"></span>
+                                                            <span class="vs-radio--circle"></span>
+                                                        </span>
+                                                        <span class="">کاربر عادی</span>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group validate">
+                                        <span asp-validation-for="Address"></span>
+                                        <div class="controls">
+                                            <fieldset class="form-label-group mb-0">
+                                                <textarea data-length="500" asp-for="Address" class="form-control char-textarea" id="textarea-counter" rows="3" placeholder="آدرس "></textarea>
+
+                                            </fieldset>
+                                            <small class="counter-value float-right"><span class="char-count">0</span> / 500</small>
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group validate">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <span asp-validation-for="ImagePath"></span>
+                                                <div class="controls">
+                                                    <input id="imgInp" type="file" name="ImagePath" asp-for="ImagePath" placeholder="تصویر">
+                                                    <div class="help-block">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <img class="imgAdd" id="Img" src="/Images/UserAvatar/defaultuserImage1.jpg" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group validate">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <span asp-validation-for="SignaturePath"></span>
+                                                <div class="controls">
+                                                    <input id="sigInp" type="file" name="SignaturePath" asp-for="SignaturePath" placeholder="امضا">
+                                                    <div class="help-block">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <img class="imgAdd" id="Sig" src="/Images/Signature/signatureDefault.jpg" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">ارسال</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts{
+    <script>
+
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#Img').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+
+
+
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#Sig').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#sigInp").change(function () {
+            readURL2(this);
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+}

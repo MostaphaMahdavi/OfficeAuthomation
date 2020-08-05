@@ -32,9 +32,25 @@ namespace OfficeAuthomation.Servicess.Accounts.Users.Validators
                 .MaximumLength(10).WithMessage("{PropertyName} حداکثر 10 کاراکتر می باشد.")
                 .WithName("تاریخ تولد");
 
-            RuleFor(u => u.FirstName).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+            RuleFor(u => u.Gender).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
                 .NotNull().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
                 .WithName("جنسیت");
+
+            RuleFor(u => u.RoleAdmin).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .NotNull().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .WithName("ادمین/کاربر");
+
+            RuleFor(u => u.PhoneNumber).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .NotNull().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .MaximumLength(11).WithMessage("{PropertyName} حداکثر 10 کاراکتر می باشد.")
+
+                .WithName("موبایل");
+
+            RuleFor(u => u.Email).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .NotNull().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
+                .MaximumLength(100).WithMessage("{PropertyName} حداکثر 10 کاراکتر می باشد.")
+
+                .WithName("ایمیل");
 
             RuleFor(u => u.MeliCode).NotEmpty().WithMessage("{PropertyName} نمی تواند خالی باشذ.")
                 .NotNull().WithMessage("{PropertyName} نمی تواند خالی باشذ.")

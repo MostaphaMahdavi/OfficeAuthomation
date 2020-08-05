@@ -12,13 +12,16 @@
     <Folder Include="Accounts\Roles\Commands\" />
     <Folder Include="Accounts\Roles\Queries\" />
     <Folder Include="Accounts\Roles\Validators\" />
-    <Folder Include="Accounts\Users\Commands\" />
     <Folder Include="Accounts\Users\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
+    <PackageReference Include="MD.PersianDateTime" Version="4.1.0" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.5.1" />

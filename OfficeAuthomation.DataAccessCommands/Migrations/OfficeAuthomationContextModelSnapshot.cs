@@ -182,8 +182,8 @@ namespace OfficeAuthomation.DataAccessCommands.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
-                    b.Property<bool>("Gender")
-                        .HasColumnType("bit");
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -232,6 +232,9 @@ namespace OfficeAuthomation.DataAccessCommands.Migrations
 
                     b.Property<DateTime>("RegisterDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte>("RoleAdmin")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
